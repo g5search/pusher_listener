@@ -1,6 +1,6 @@
 # PusherListener
 
-TODO: Write a gem description
+Wrapper around PusherClient that reconnects when there is an error
 
 ## Installation
 
@@ -18,7 +18,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = PusherListener::Client.new(
+  key: 'pusher_key',
+  secret: 'pusher_secret',
+  encrypted: true
+)
+
+client.when('some_channel', 'some_event') do |data|
+  puts "do something with #{data}"
+end
+
+client.start # loops forever since this is meant to be run in a daemon
+```
 
 ## Contributing
 
